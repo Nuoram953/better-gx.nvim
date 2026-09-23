@@ -2,7 +2,6 @@ local M = {}
 
 M.setup = function(opts)
 	opts = opts or {}
-	vim.notify("Hello from my-plugin!")
 end
 
 --[[
@@ -30,10 +29,7 @@ https://stage.test.app.com
 
 ]]
 
--- file handling
--- create file
--- open file
-
+-- user commands
 -- BetterGxEdit
 -- BetterGxOpen
 -- BetterGxHistory
