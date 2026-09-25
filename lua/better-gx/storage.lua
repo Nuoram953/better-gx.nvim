@@ -28,4 +28,18 @@ M.edit = function()
 	vim.cmd.edit(path)
 end
 
+M.get_content = function()
+	local path = M.get_path()
+	local lines = vim.fn.readfile(path)
+	local content = table.concat(lines, "\n")
+
+	local success, data = pcall(vim.json.decode, content)
+	if not success then
+		logger.error("Coulnd't decode Json file. Make sure it's a valid json' " .. path)
+		return nil, "JSON parse error: " .. data
+	end
+
+	return data
+end
+
 return M
