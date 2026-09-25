@@ -6,5 +6,5 @@ end)
 
 vim.api.nvim_create_user_command("BetterGxOpen", function()
 	local content = storage.get_content()
-	vim.print(content)
+	vim.print(content[1].url)
 end)

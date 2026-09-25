@@ -28,6 +28,7 @@ M.edit = function()
 	vim.cmd.edit(path)
 end
 
+--- @return BookmarkItem[]
 M.get_content = function()
 	local path = M.get_path()
 	local lines = vim.fn.readfile(path)
