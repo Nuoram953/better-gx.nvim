@@ -33,6 +33,10 @@ M.open_picker = function()
 				{ " " .. (item.desc or ""), "SnacksPickerComment" },
 			}
 		end,
+		confirm = function(picker, item)
+			picker:close()
+			vim.ui.open(item.value)
+		end,
 	})
 end
 
