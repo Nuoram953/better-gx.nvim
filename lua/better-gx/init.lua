@@ -1,7 +1,14 @@
 local M = {}
 
+local config = {}
+local default_opts = {}
+
 M.setup = function(opts)
-	opts = opts or {}
+	config = vim.tbl_deep_extend("force", default_opts, opts or {})
+end
+
+M.get_config = function()
+	return config
 end
 
 --[[

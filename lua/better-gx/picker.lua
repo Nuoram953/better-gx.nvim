@@ -1,18 +1,40 @@
 local storage = require("better-gx.storage")
+local logger = require("better-gx.logger")
+-- local global = require("better-gx")
+
 local M = {}
 
 ---@param items BookmarkItem[]
 ---@return BookmarkItemFormatted[]
 local function format_data(items)
 	local formatted_items = {}
-	for index, value in ipairs(items) do
-		local formatted_item = {
-			text = value.name,
-			value = value.url,
-			desc = value.name,
-		}
 
-		formatted_items[index] = formatted_item
+	for _, value in ipairs(items) do
+		local word = string.match(value.url, "{{(.-)}}")
+
+		if word == nil then
+			local formatted_item = {
+				text = value.name,
+				value = value.url,
+				desc = value.name,
+			}
+
+			formatted_items[#formatted_items + 1] = formatted_item
+		else
+			if word then
+				logger.debug("Found word " .. word .. " in url " .. value.url)
+
+				local formatted_item = {
+					text = value.name,
+					value = value.url,
+					desc = value.name,
+				}
+
+				formatted_items[#formatted_items + 1] = formatted_item
+			end
+		end
+
+		logger.debug(formatted_items)
 	end
 
 	return formatted_items
